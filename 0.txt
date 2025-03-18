@@ -53,3 +53,42 @@ public class WordCount {
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+1. start-all.sh
+
+2. jps
+
+3. export HADOOP_CLASSPATH=$(hadoop classpath)
+
+4. hadoop fs  -mkdir   /wordcount    ----> Creating a folder wordcount in hadoop
+
+5. hadoop fs  -mkdir   /wordcount/Input       ----->Creating a folder Input inside wordcount folder in Hadoop
+
+6. hadoop fs  -put   ./Input/input.txt/    /wordcount/Input        ---->Dumping input.txt to Hadoop
+
+7. export  JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64   export  PATH=$JAVA_HOME/bin:$PATH
+
+8. javac   -classpath   $(hadoop classpath)   -d   .   WordCount.java          ------> RE compile java file using Java 8
+
+9. jar  -cvf  wordcount.jar  -C  .  .          ---->create a jar file called wordcount.jar
+
+10. jar  tf  wordcount.jar               ----> this command will list all the files generated.
+
+Run hadoop job again
+11.hadoop  jar  wordcount.jar   WordCount   /wordcount/Input   /wordcount/Input/output_new    ---->WordCount is the name of class
+
+Check the Output
+12. hadoop  fs  -cat  /wordcount/Input/output_new/part-r-00000
+
+
